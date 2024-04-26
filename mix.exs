@@ -70,7 +70,7 @@ defmodule NervesSystemOrangePiCm4Intuitivo.MixProject do
       {:nerves_system_br, "1.27.1", runtime: false},
       {:nerves_toolchain_aarch64_nerves_linux_gnu, "~> 13.2.0", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.22", only: :docs, runtime: false},
+      {:ex_doc, "~> 0.22", only: :docs, runtime: false}
     ]
   end
 
@@ -117,7 +117,7 @@ defmodule NervesSystemOrangePiCm4Intuitivo.MixProject do
       "VERSION"
     ]
   end
-  
+
   defp prepare_deps(_) do
     {_, 0} = System.cmd(
       "/bin/bash",
@@ -129,17 +129,12 @@ defmodule NervesSystemOrangePiCm4Intuitivo.MixProject do
       stderr_to_stdout: true
     )
   end
-  
+
   defp aliases do
     [
       loadconfig: [&bootstrap/1],
       compile: [&prepare_deps/1,"compile"]
     ]
-  end
-
-  # Copy the images referenced by docs, since ex_doc doesn't do this.
-  defp copy_images(_) do
-    File.cp_r("assets", "doc/assets")
   end
 
   defp build_runner_opts() do
